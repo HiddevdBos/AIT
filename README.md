@@ -8,3 +8,5 @@ The code uses two agents, a Host and a Guesser. The Host chooses a word and upda
 ## Setup
 python 3.0 v.
 
+
+To run the game, run python3 hangman.py.
