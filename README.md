@@ -6,5 +6,5 @@ This repository was created in order to work for an assignment in the Logical As
 The code uses two agents, a Host and a Guesser. The Host chooses a word and updates the game after every guess, made by the Guesser. The Guesser makes guesses based on logic. We decided the usage of a hangman consisted of nine pieces which indicates that the Guesser is limited to the maximum of nine mistakes. In case that our Guesser provides nine letters that don’t exist in our Host’s word, then nine lines will be added in the hangman and the game will be terminated. 
 
 ## Setup
-
+python 3.0 v.
 
