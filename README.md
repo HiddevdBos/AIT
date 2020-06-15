@@ -3,14 +3,14 @@
 This repository was created in order to work for an assignment in the Logical Aspects of Multi-agent Systems course provided by the University of Groningen. 
 
 ## Hangman game
-The code uses two agents, a Host and a Guesser. The Host chooses a word and updates the game after every guess, made by the Guesser. The Guesser makes guesses based on logic. We decided the usage of a hangman consisted of nine pieces which indicates that the Guesser is limited to the maximum of nine mistakes. In case that our Guesser provides nine letters that don’t exist in our Host’s word, then nine lines will be added in the hangman and the game will be terminated. 
+This code is a symmetric Hangman game, using two agents. The difference with the traditional hangman game is that this version is player vs player, instead of player vs host. In this version, both agents choose a word at the start of the game. At every turn, one of the players makes a guess, based on logic, and both players show whether the guessed letter is present in the word they chose. The goal of the agents is to guess the word of the opponent, before the opponent guesses their word.
 
 ## Setup
 python 3.0 v.
 
 ## Running the code
 
-The code currently can be run by the single script `hangman.py` with the following command:
+The code can be run with the following command:
 
 ```
 python3 hangman.py
