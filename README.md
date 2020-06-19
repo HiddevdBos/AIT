@@ -7,6 +7,7 @@ This code is a symmetric Hangman game, using two agents. The difference with the
 
 ## Setup
 python 3.0 v.
+Natural Language Toolkit (NLTK) 3.5 V.
 
 ## Running the code
 
@@ -14,4 +15,14 @@ The code can be run with the following command:
 
 ```
 python3 hangman.py
+```
+In case you receive an error regarding nltk library: 
+
+```pip3 install nltk
+```
+
+In case you receive an error regarding corpora/words run the following command and later follow the process through the window that appears:
+
+```
+python3 -c ("import nltk; nltk.dowload()")
 ```
