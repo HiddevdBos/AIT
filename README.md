@@ -8,7 +8,7 @@ This code is a symmetric Hangman game, using two agents. The difference with the
 ## Setup
 python 3.0 v.  <br/>
 
-Natural Language Toolkit (NLTK) 3.5 V.
+Natural Language Toolkit (NLTK) 3.5 v.
 
 ## Running the code
 
