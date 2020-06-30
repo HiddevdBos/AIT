@@ -3,10 +3,27 @@ from player import *
 # start of the game, player chooses a word and 
 def startGame(player_1, player_2):
 	player_1.chooseWord(len(player_2.result()))	# choose a random word
-	player_2.getAnswer(player_1.giveAnswer())	# tell player_1 how many letters the word is
+	player_2.getwordLength(player_1.giveAnswer())	# tell player_1 how many letters the word is
 	player_2.wordLength()	# process word length 
 
 	print(player_1.name(), "chooses the word", player_1.result())
+
+def winner(player_1, player_2):
+	if player_1.possibilities() == 1 and player_2.possibilities()==1:	# if they both know the other's word
+			print (player_1.name(), "guesses", player_1.guessAnswer())
+			print (player_2.name(), "guesses", player_2.guessAnswer())
+			print ("It is a draw")
+			return True
+	if player_1.possibilities() == 1:	# if player_1 knows player_2's word
+		print (player_1.name(), "guesses", player_1.guessAnswer())
+		print (player_1.name(), "wins")
+		return True
+	if player_2.possibilities() == 1:	# if player_1 knows player_2's word
+		print (player_2.name(), "guesses", player_2.guessAnswer())
+		print (player_2.name(), "wins")
+		return True
+	return False
+
 
 def playRound(player_1, player_2):
 	player_1.guess()	# guess a letter
@@ -20,7 +37,9 @@ def playRound(player_1, player_2):
 	player_2.getAnswer(player_1.giveAnswer())	# process other player's reaction
 	player_1.remaining()
 	player_2.remaining()
-
+	player_1.deduct()
+	player_2.deduct()
+	
 	print (player_1.name(), 'current knowledge is',''.join(player_2.giveAnswer()))			 # print letters of word known by player_1
 	print (player_1.name(), "has", player_1.possibilities(), "possible worlds remaining")
 	if (player_1.possibilities() < 10):
@@ -43,18 +62,17 @@ input("\npress any key to start the game\n")
 
 # play the game. Continues until one of the players guesses the word of the other player
 while True:
-	if player_1.possibilities() == 1:	# if player_1 knows player_2's word
-		print (player_1.name(), "guesses", player_1.guessAnswer())
-		print (player_1.name(), "wins")
-		break # exit loop, ending game
 	
 	playRound(player_1, player_2)
-	input("press any key to go to the next round\n")
-	
-	if player_2.possibilities() == 1: # if player_2 knows player_1's word
-		print (player_2.name(), "guesses", player_2.guessAnswer())
-		print (player_2.name(), "wins")	
+
+	if winner(player_1, player_2):
 		break # exit loop, ending game
 	
+	input("press any key to go to the next round\n")
+	
 	playRound(player_2, player_1)
+	
+	if winner(player_1, player_2):
+		break # exit loop, ending game
+	
 	input("press any key to go to the next round\n")

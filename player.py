@@ -32,9 +32,29 @@ class Player:
 			if item == guess:
 				self.knowledge_opponent[idx] = guess
 
+	def deduct(self):	# add letter to knowledge if it is the case in all remaining 
+		before = self.knowledge.copy()  # copy of knowledge before deduction
+		deducted = list(self.__possible[0])
+		for i, letter in enumerate(deducted):  # if letter is known, it doesn't have to be deducted
+			if self.knowledge[i] != '.':
+				deducted[i] = '.'
+		for word in self.__possible:						# for all words, check if they share similar letter
+			for i, letter in enumerate(word):
+				if deducted[i] != letter:
+					deducted[i] ='.'
+			if all(letter == '.' for letter in word):	# if no result, break loop to save time
+				break
+		for i, letter in enumerate(deducted):		# if a letter is deducted, add it to knowledge
+			if letter != '.':
+				self.knowledge[i] = letter
+
 	# guess word of other player (when certain)
 	def guessAnswer(self):
 		return self.__possible[0]
+
+	# get length of the word of the other player
+	def getwordLength(self, word):
+		self.knowledge = word
 
 	# select all possible worlds, based on the length of the word
 	def wordLength(self):
@@ -80,8 +100,9 @@ class Player:
 
 	# process announcement of other player
 	def getAnswer(self, updated_answer):
-		self.knowledge.clear()
-		self.knowledge = updated_answer.copy()
+		for i, letter in enumerate(self.knowledge):
+			if letter == '.' and updated_answer[i] != '.':
+				self.knowledge[i] == updated_answer[i]
 
 	# return current guessed letter
 	def currentGuess(self):
